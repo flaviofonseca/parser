@@ -14,23 +14,21 @@ import java.util.Map;
 @Service
 public class ParseApplication {
 
-    private FileLogService readFileLogService;
-
     @Autowired
-    public ParseApplication(FileLogService readFileLogService) {
-        this.readFileLogService = readFileLogService;
-    }
+    private FileLogService fileLogService;
 
     public void execute(String args[]) {
         try {
 
             ArgsHelper argsHelper = new ArgsHelper(args);
 
-            Collection<FileLogModel> listFileLogModels = readFileLogService.readFile(argsHelper.getFilePath());
-            readFileLogService.saveFileLogDataBase(listFileLogModels);
-            List<Map<String, Object>> listIp = readFileLogService.searchRequestByIp(argsHelper);
+            Collection<FileLogModel> listFileLogModels = fileLogService.readFile(argsHelper.getFilePath());
+            fileLogService.saveFileLogDataBase(listFileLogModels);
 
-            System.out.println("IP find.");
+            System.out.println("looking for log in the period.");
+            List<Map<String, Object>> listIp = fileLogService.searchRequestByIp(argsHelper);
+
+            System.out.println("IPs found.");
             listIp.forEach(ip -> System.out.println(ip.get("ip")));
 
         } catch (BusinesException businesException) {

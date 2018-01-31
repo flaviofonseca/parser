@@ -1,11 +1,11 @@
 package com.ef.filelog;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
-import org.springframework.stereotype.Repository;
+import org.springframework.jdbc.core.support.JdbcDaoSupport;
+import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.time.LocalDateTime;
@@ -14,16 +14,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@Repository
-public class FileLogRepository {
-
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+@Service
+public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
     private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
 
     @Autowired
-    public void setDataSource(DataSource dataSource) {
+    public FileLogDAOImpl(DataSource dataSource) {
+        this.setDataSource(dataSource);
         this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
@@ -76,6 +74,8 @@ public class FileLogRepository {
     }
 
     public void deleteFileLog() {
-        this.jdbcTemplate.execute("delete from filelog");
+        System.out.println("Waiting... delete log into database");
+        this.getJdbcTemplate().execute("delete from filelog");
+        System.out.println("End process... delete log into database");
     }
 }

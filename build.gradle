@@ -13,6 +13,9 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.3.RELEASE'
     compile group: 'org.springframework', name: 'spring-jdbc', version: '5.0.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-core', version: '5.0.3.RELEASE'
+    compile group: 'org.springframework', name: 'spring-tx', version: '5.0.3.RELEASE'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
+    compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
