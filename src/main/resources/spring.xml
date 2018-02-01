@@ -4,28 +4,28 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
-  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+  http://www.springframework.org/schema/beans/spring-beans-5.0.3.xsd
   http://www.springframework.org/schema/context
-  http://www.springframework.org/schema/context/spring-context-3.0.xsd
+  http://www.springframework.org/schema/context/spring-context-5.0.3.xsd
   http://www.springframework.org/schema/tx
-  http://www.springframework.org/schema/tx/spring-tx.xsd">
+  http://www.springframework.org/schema/tx/spring-tx-5.0.3.xsd">
 
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
 
     <context:component-scan
-            base-package="com.ef" />
+            base-package="com.ef"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
           destroy-method="close">
-        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
-        <property name="url" value="jdbc:mysql://localhost:3306/parser" />
-        <property name="username" value="root" />
-        <property name="password" value="root" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/parser"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
     </bean>
 
     <bean id="transactionManager"
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
 
 </beans>

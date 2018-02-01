@@ -1,16 +1,15 @@
 package com.ef;
 
 import com.ef.execute.ParseApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Parser {
 
 
     public static void main(String[] args) {
 
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
-        // AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Parser.class.getPackage().getName());
+        //ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Parser.class.getPackage().getName());
         ParseApplication parseApplication = applicationContext.getBean(ParseApplication.class);
         parseApplication.execute(args);
 

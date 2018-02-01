@@ -17,12 +17,9 @@ import java.util.stream.Collectors;
 @Service
 public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
-    private NamedParameterJdbcTemplate namedParameterJdbcTemplate;
-
     @Autowired
     public FileLogDAOImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
-        this.namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     public void saveFileLogDataBase(Collection<FileLogModel> listFileLogModels) {
@@ -37,7 +34,8 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
                 .collect(Collectors.toList())
                 .toArray(sqlParameterSources);
 
-        this.namedParameterJdbcTemplate.batchUpdate(this.getSqlInsertlFileLog(), sqlParameterSources);
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        namedParameterJdbcTemplate.batchUpdate(this.getSqlInsertlFileLog(), sqlParameterSources);
         System.out.println("end process insert...");
     }
 
@@ -56,7 +54,8 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
         sql.append("group by ip ");
         sql.append("having count(*) >= :threshold ");
 
-        return this.namedParameterJdbcTemplate.queryForList(sql.toString(), sqlParameterSource);
+        NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
+        return namedParameterJdbcTemplate.queryForList(sql.toString(), sqlParameterSource);
     }
 
     private MapSqlParameterSource getMapSqlParameterSourceFileLogModel(FileLogModel f) {

@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="applicationContext" removed="false">
           <file>file://$MODULE_DIR$/../../src/main/resources/main.xml</file>
+          <file>file://$MODULE_DIR$/../../src/main/resources/spring.xml</file>
         </fileset>
       </configuration>
     </facet>
