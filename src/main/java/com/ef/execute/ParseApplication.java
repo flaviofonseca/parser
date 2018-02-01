@@ -4,6 +4,8 @@ import com.ef.exception.BusinesException;
 import com.ef.filelog.FileLogModel;
 import com.ef.filelog.FileLogService;
 import com.ef.parser.ArgsHelper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,8 @@ public class ParseApplication {
 
     @Autowired
     private FileLogService fileLogService;
+    private Logger logger = LoggerFactory.getLogger(ParseApplication.class);
+
 
     public void execute(String args[]) {
         try {
@@ -25,14 +29,16 @@ public class ParseApplication {
             Collection<FileLogModel> listFileLogModels = fileLogService.readFile(argsHelper.getFilePath());
             fileLogService.saveFileLogDataBase(listFileLogModels);
 
-            System.out.println("looking for log in the period.");
+            logger.info("looking for log in the period.");
             List<Map<String, Object>> listIp = fileLogService.searchRequestByIp(argsHelper);
 
-            System.out.println("IPs found.");
-            listIp.forEach(ip -> System.out.println(ip.get("ip")));
+            logger.info("IPs found.");
+            listIp.forEach(ip -> logger.info(ip.get("ip").toString()));
 
         } catch (BusinesException businesException) {
-            System.out.println(businesException.getMessage());
+            logger.error(businesException.getMessage());
+        } catch (Exception e) {
+            logger.error(e.getMessage());
         }
     }
 }

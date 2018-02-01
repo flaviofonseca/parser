@@ -1,10 +1,14 @@
 package com.ef;
 
 import com.ef.execute.ParseApplication;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 
 public class Parser {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(Parser.class);
 
     public static void main(String[] args) {
 
@@ -14,7 +18,7 @@ public class Parser {
         parseApplication.execute(args);
 
         // applicationContext.close();
-        System.out.println("End program!");
+        LOGGER.info("End program!");
     }
 
 }

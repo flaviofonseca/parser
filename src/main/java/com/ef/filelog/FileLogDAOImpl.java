@@ -1,5 +1,7 @@
 package com.ef.filelog;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -17,6 +19,8 @@ import java.util.stream.Collectors;
 @Service
 public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
+    private Logger logger = LoggerFactory.getLogger(FileLogDAOImpl.class);
+
     @Autowired
     public FileLogDAOImpl(DataSource dataSource) {
         this.setDataSource(dataSource);
@@ -24,7 +28,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
     public void saveFileLogDataBase(Collection<FileLogModel> listFileLogModels) {
 
-        System.out.println("Waiting... insert log into database");
+        logger.info("Wait... inserting log into database");
         FunctionalFileLog functionalFileLog = f -> this.getMapSqlParameterSourceFileLogModel(f);
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[listFileLogModels.size()];
 
@@ -36,7 +40,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         namedParameterJdbcTemplate.batchUpdate(this.getSqlInsertlFileLog(), sqlParameterSources);
-        System.out.println("end process insert...");
+        logger.info("insert process finished...");
     }
 
     public List<Map<String, Object>> searchRequestByIp(Integer threshold,
@@ -73,8 +77,8 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
     }
 
     public void deleteFileLog() {
-        System.out.println("Waiting... delete log into database");
+        logger.info("Wait, deleting log on database...");
         this.getJdbcTemplate().execute("delete from filelog");
-        System.out.println("End process... delete log into database");
+        logger.info("End process. log deleted");
     }
 }

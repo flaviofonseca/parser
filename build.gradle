@@ -17,5 +17,8 @@ dependencies {
     compile group: 'org.springframework', name: 'spring-tx', version: '5.0.3.RELEASE'
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.39'
     compile group: 'commons-dbcp', name: 'commons-dbcp', version: '1.2.2'
+    compile group: 'org.slf4j', name: 'log4j-over-slf4j', version: '1.7.25'
+    compile group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.25'
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     compile fileTree(dir: 'libs', include: ['*.jar'])
 }
