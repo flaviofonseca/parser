@@ -78,7 +78,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
     public void deleteFileLog() {
         logger.info("Wait, deleting log on database...");
-        this.getJdbcTemplate().execute("delete from filelog");
+        this.getJdbcTemplate().execute("truncate filelog");
         logger.info("End process. log deleted");
     }
 }

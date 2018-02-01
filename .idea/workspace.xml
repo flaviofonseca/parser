@@ -7,25 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5cfa08c0-f66a-4182-8450-325e881dfea1" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_classic_1_2_3.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__ch_qos_logback_logback_core_1_2_3.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_jul_to_slf4j_1_7_25.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_log4j_over_slf4j_1_7_25.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__org_slf4j_slf4j_api_1_7_25.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/out/production/resources/logback.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/logback.xml" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.bin" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" afterPath="$PROJECT_DIR$/.gradle/4.0/fileHashes/fileHashes.lock" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/parser_main.iml" afterPath="$PROJECT_DIR$/.idea/modules/parser_main.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/parser_test.iml" afterPath="$PROJECT_DIR$/.idea/modules/parser_test.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/parser_main_jar.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/parser_main_jar.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/parser_main_jar/parser_main.jar" afterPath="$PROJECT_DIR$/out/artifacts/parser_main_jar/parser_main.jar" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/ef/Parser.class" afterPath="$PROJECT_DIR$/out/production/classes/com/ef/Parser.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/ef/execute/ParseApplication.class" afterPath="$PROJECT_DIR$/out/production/classes/com/ef/execute/ParseApplication.class" />
       <change beforePath="$PROJECT_DIR$/out/production/classes/com/ef/filelog/FileLogDAOImpl.class" afterPath="$PROJECT_DIR$/out/production/classes/com/ef/filelog/FileLogDAOImpl.class" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ef/Parser.java" afterPath="$PROJECT_DIR$/src/main/java/com/ef/Parser.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/ef/execute/ParseApplication.java" afterPath="$PROJECT_DIR$/src/main/java/com/ef/execute/ParseApplication.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/ef/filelog/FileLogDAOImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/ef/filelog/FileLogDAOImpl.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -155,13 +140,13 @@
       <file leaf-file-name="FileLogDAOImpl.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/ef/filelog/FileLogDAOImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+            <state relative-caret-position="238">
+              <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#866#867#0" expanded="true" />
                 <element signature="e#912#913#0" expanded="true" />
-                <marker date="1517498354855" expanded="true" signature="3461:3480" ph="delete from filelog... " />
+                <marker date="1517507086515" expanded="true" signature="3469:3477" ph="delete from filelog... " />
               </folding>
             </state>
           </provider>
@@ -626,6 +611,20 @@
               <item name="parser" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="parser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="parser" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="parser" type="b2602c69:ProjectViewProjectNode" />
+              <item name="parser" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -1298,13 +1297,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/ef/filelog/FileLogDAOImpl.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="81" column="33" lean-forward="false" selection-start-line="81" selection-start-column="33" selection-end-line="81" selection-end-column="33" />
+        <state relative-caret-position="238">
+          <caret line="74" column="34" lean-forward="false" selection-start-line="74" selection-start-column="34" selection-end-line="74" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#866#867#0" expanded="true" />
             <element signature="e#912#913#0" expanded="true" />
-            <marker date="1517498354855" expanded="true" signature="3461:3480" ph="delete from filelog... " />
+            <marker date="1517507086515" expanded="true" signature="3469:3477" ph="delete from filelog... " />
           </folding>
         </state>
       </provider>
