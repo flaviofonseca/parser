@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BlockIpDAOImpl extends JdbcDaoSupport implements BlockIpDAO {
@@ -26,14 +27,14 @@ public class BlockIpDAOImpl extends JdbcDaoSupport implements BlockIpDAO {
     @Override
     public void saveBlockIp(List<BlockIpModel> blockIpModel) {
 
-        FunctionalFileLog functionalFileLog = f -> this.getMapSqlParameterSourceFileLogModel(f);
+        FunctionalTransformBlockIpToSqlParameterSource functionalFileLog = f -> this.getMapSqlParameterSourceFileLogModel(f);
         SqlParameterSource[] sqlParameterSources = new SqlParameterSource[blockIpModel.size()];
 
-//        listFileLogModels
-//                .stream()
-//                .map(functionalFileLog)
-//                .collect(Collectors.toList())
-//                .toArray(sqlParameterSources);
+        blockIpModel
+                .stream()
+                .map(functionalFileLog)
+                .collect(Collectors.toList())
+                .toArray(sqlParameterSources);
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         namedParameterJdbcTemplate.batchUpdate(getSqlInsertBlockIp(), sqlParameterSources);
@@ -48,4 +49,5 @@ public class BlockIpDAOImpl extends JdbcDaoSupport implements BlockIpDAO {
     private String getSqlInsertBlockIp() {
         return "insert into blockip(ip, comment) values(:ip, :comment)";
     }
+
 }

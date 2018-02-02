@@ -39,7 +39,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
         namedParameterJdbcTemplate.batchUpdate(this.getSqlInsertlFileLog(), sqlParameterSources);
-        logger.info("insert process finished...");
+        logger.info("insert process finished...\n");
     }
 
     public List<FileLogModel> searchRequestByIp(Integer threshold,
@@ -53,7 +53,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
 
         StringBuilder sql = new StringBuilder();
         sql.append("select ip from filelog ");
-        sql.append("where date_request between :startDate and :finalDate ");
+        sql.append("where date_request >= :startDate and date_request < :finalDate ");
         sql.append("group by ip ");
         sql.append("having count(*) >= :threshold ");
 
@@ -78,6 +78,6 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
     public void deleteFileLog() {
         logger.info("Wait, deleting log on database...");
         this.getJdbcTemplate().execute("truncate filelog");
-        logger.info("End process. log deleted");
+        logger.info("End process. log deleted\n");
     }
 }

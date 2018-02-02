@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,21 +23,28 @@ public class BlockIpServiceImpl implements BlockIpService {
     @Override
     public void saveListBlockIp(List<FileLogModel> fileLogModelList, ArgsHelper argsHelper) {
 
-        FuncionalBlockIp funcionalBlockIp = f -> this.fileLogModelToBlockIpModel(f);
+        FunctionalTransformFileLogModelToBlockIp funcionalBlockIp = f -> this.fileLogModelToBlockIpModel(f, argsHelper);
         List<BlockIpModel> blockIpModelList = fileLogModelList.stream()
-                                                                .map(funcionalBlockIp)
-                                                                .collect(Collectors.toList());
+                .map(funcionalBlockIp)
+                .collect(Collectors.toList());
 
         blockIpDAO.saveBlockIp(blockIpModelList);
 
     }
 
-    private BlockIpModel fileLogModelToBlockIpModel(FileLogModel f) {
-        return null;
+    private BlockIpModel fileLogModelToBlockIpModel(FileLogModel f, ArgsHelper argsHelper) {
+        BlockIpModel blockIpModel = new BlockIpModel();
+        blockIpModel.setIp(f.getIp());
+        blockIpModel.setComment(this.getComment(f.getIp(), argsHelper));
+        return blockIpModel;
     }
 
-    private interface FuncionalBlockIp extends Function<FileLogModel, BlockIpModel> {
-
+    private String getComment(String ip, ArgsHelper argsHelper) {
+        return "The ip " + ip + " was blocked due " +
+                "to exceeding the number of requests " + argsHelper.getThreshold() +
+                " in the period from " + argsHelper.getStartDate() +
+                " to " + argsHelper.getFinalDate();
     }
+
 
 }

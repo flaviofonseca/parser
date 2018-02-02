@@ -7,11 +7,10 @@ import java.util.List;
 
 public interface FileLogService {
 
-    Collection<FileLogModel> readFile(String filePath);
+    List<FileLogModel> readFile(String filePath);
 
     void saveFileLogDataBase(Collection<FileLogModel> listFileLogModels);
 
     List<FileLogModel> searchRequestByIp(ArgsHelper argsHelper);
 
-    void searchAndSaveIPsBlock(ArgsHelper argsHelper);
 }

@@ -72,13 +72,6 @@ public class FileLogServiceImpl implements FileLogService {
         listFileLogModels.add(fileLogModel);
     }
 
-    @Transactional
-    @Override
-    public void searchAndSaveIPsBlock(ArgsHelper argsHelper) {
-        List<FileLogModel> fileLogModelList = this.searchRequestByIp(argsHelper);
-        blockIpService.saveListBlockIp(fileLogModelList, argsHelper);
-    }
-
     public List<FileLogModel> searchRequestByIp(ArgsHelper argsHelper) {
 
         LocalDateTime finalDate = null;
@@ -89,6 +82,7 @@ public class FileLogServiceImpl implements FileLogService {
         } else if (DurationType.DAILY.equals(argsHelper.getDuration())) {
             finalDate = UtilDate.addDayToDate(startDate);
         }
+        argsHelper.setFinalDate(finalDate);
 
         return this.fileLogDAO.searchRequestByIp(argsHelper.getThreshold(), startDate, finalDate);
     }

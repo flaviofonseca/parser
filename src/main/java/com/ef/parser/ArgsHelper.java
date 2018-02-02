@@ -8,6 +8,7 @@ public class ArgsHelper {
 
     private String filePath;
     private LocalDateTime startDate;
+    private LocalDateTime finalDate;
     private Integer threshold;
     private DurationType duration;
 
@@ -32,6 +33,14 @@ public class ArgsHelper {
 
     public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
+    }
+
+    public LocalDateTime getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(LocalDateTime finalDate) {
+        this.finalDate = finalDate;
     }
 
     public Integer getThreshold() {
