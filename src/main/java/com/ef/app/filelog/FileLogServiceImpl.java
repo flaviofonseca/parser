@@ -18,8 +18,6 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 public class FileLogServiceImpl implements FileLogService {
@@ -74,7 +72,14 @@ public class FileLogServiceImpl implements FileLogService {
         listFileLogModels.add(fileLogModel);
     }
 
-    public List<Map<String, Object>> searchRequestByIp(ArgsHelper argsHelper) {
+    @Transactional
+    @Override
+    public void searchAndSaveIPsBlock(ArgsHelper argsHelper) {
+        List<FileLogModel> fileLogModelList = this.searchRequestByIp(argsHelper);
+        blockIpService.saveListBlockIp(fileLogModelList, argsHelper);
+    }
+
+    public List<FileLogModel> searchRequestByIp(ArgsHelper argsHelper) {
 
         LocalDateTime finalDate = null;
         LocalDateTime startDate = argsHelper.getStartDate();
@@ -85,13 +90,7 @@ public class FileLogServiceImpl implements FileLogService {
             finalDate = UtilDate.addDayToDate(startDate);
         }
 
-        List<Map<String, Object>> listIps = this.fileLogDAO.searchRequestByIp(argsHelper.getThreshold(), startDate, finalDate);
-
-        listIps.stream()
-                .map(v -> v.put("comment", getComment(v.get("ip").toString(), "", "")))
-                .collect(Collectors.toList());
-
-        return listIps;
+        return this.fileLogDAO.searchRequestByIp(argsHelper.getThreshold(), startDate, finalDate);
     }
 
     private String getComment(String ip, String treshold, String startDate) {

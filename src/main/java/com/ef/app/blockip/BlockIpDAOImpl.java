@@ -1,14 +1,17 @@
 package com.ef.app.blockip;
 
+import com.ef.app.filelog.FunctionalFileLog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
+import java.util.List;
 
 @Service
 public class BlockIpDAOImpl extends JdbcDaoSupport implements BlockIpDAO {
@@ -21,13 +24,25 @@ public class BlockIpDAOImpl extends JdbcDaoSupport implements BlockIpDAO {
     }
 
     @Override
-    public void saveBlockIp(BlockIpModel blockIpModel) {
-        MapSqlParameterSource mapSqlParameterSource = new MapSqlParameterSource();
-        mapSqlParameterSource.addValue("ip", blockIpModel.getIp());
-        mapSqlParameterSource.addValue("comment", blockIpModel.getComment());
+    public void saveBlockIp(List<BlockIpModel> blockIpModel) {
+
+        FunctionalFileLog functionalFileLog = f -> this.getMapSqlParameterSourceFileLogModel(f);
+        SqlParameterSource[] sqlParameterSources = new SqlParameterSource[blockIpModel.size()];
+
+//        listFileLogModels
+//                .stream()
+//                .map(functionalFileLog)
+//                .collect(Collectors.toList())
+//                .toArray(sqlParameterSources);
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        namedParameterJdbcTemplate.update(getSqlInsertBlockIp(), mapSqlParameterSource);
+        namedParameterJdbcTemplate.batchUpdate(getSqlInsertBlockIp(), sqlParameterSources);
+    }
+
+    private MapSqlParameterSource getMapSqlParameterSourceFileLogModel(BlockIpModel blockIpModel) {
+        return new MapSqlParameterSource()
+                .addValue("ip", blockIpModel.getIp())
+                .addValue("comment", blockIpModel.getComment());
     }
 
     private String getSqlInsertBlockIp() {

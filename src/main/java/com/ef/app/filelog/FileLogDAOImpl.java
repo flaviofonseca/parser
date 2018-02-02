@@ -13,7 +13,6 @@ import javax.sql.DataSource;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -43,9 +42,9 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
         logger.info("insert process finished...");
     }
 
-    public List<Map<String, Object>> searchRequestByIp(Integer threshold,
-                                                       LocalDateTime startDate,
-                                                       LocalDateTime finalDate) {
+    public List<FileLogModel> searchRequestByIp(Integer threshold,
+                                                LocalDateTime startDate,
+                                                LocalDateTime finalDate) {
 
         MapSqlParameterSource sqlParameterSource = new MapSqlParameterSource();
         sqlParameterSource.addValue("startDate", startDate);
@@ -59,7 +58,7 @@ public class FileLogDAOImpl extends JdbcDaoSupport implements FileLogDAO {
         sql.append("having count(*) >= :threshold ");
 
         NamedParameterJdbcTemplate namedParameterJdbcTemplate = new NamedParameterJdbcTemplate(getDataSource());
-        return namedParameterJdbcTemplate.queryForList(sql.toString(), sqlParameterSource);
+        return namedParameterJdbcTemplate.query(sql.toString(), sqlParameterSource, new FileLogRowMapper());
     }
 
     private MapSqlParameterSource getMapSqlParameterSourceFileLogModel(FileLogModel f) {

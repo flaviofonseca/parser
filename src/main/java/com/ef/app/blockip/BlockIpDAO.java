@@ -1,5 +1,7 @@
 package com.ef.app.blockip;
 
+import java.util.List;
+
 public interface BlockIpDAO {
-    void saveBlockIp(BlockIpModel blockIpModel);
+    void saveBlockIp(List<BlockIpModel> blockIpModel);
 }

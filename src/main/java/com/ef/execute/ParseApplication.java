@@ -18,6 +18,7 @@ public class ParseApplication {
 
     @Autowired
     private FileLogService fileLogService;
+
     private Logger logger = LoggerFactory.getLogger(ParseApplication.class);
 
 
@@ -29,11 +30,11 @@ public class ParseApplication {
             Collection<FileLogModel> listFileLogModels = fileLogService.readFile(argsHelper.getFilePath());
             fileLogService.saveFileLogDataBase(listFileLogModels);
 
-            logger.info("looking for log in the period.");
-            List<Map<String, Object>> listIp = fileLogService.searchRequestByIp(argsHelper);
+            logger.info("Searching IPs...\n");
+            List<FileLogModel> listIp = fileLogService.searchRequestByIp(argsHelper);
 
-            logger.info("IPs found.");
-            listIp.forEach(ip -> logger.info(ip.get("ip").toString()));
+            logger.info("IPs found in the period.");
+            listIp.forEach(ip -> logger.info(ip.getIp()));
 
         } catch (BusinesException businesException) {
             logger.error(businesException.getMessage());

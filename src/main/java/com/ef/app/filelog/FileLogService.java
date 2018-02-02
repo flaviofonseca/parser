@@ -4,7 +4,6 @@ import com.ef.parser.ArgsHelper;
 
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 public interface FileLogService {
 
@@ -12,5 +11,7 @@ public interface FileLogService {
 
     void saveFileLogDataBase(Collection<FileLogModel> listFileLogModels);
 
-    List<Map<String,Object>> searchRequestByIp(ArgsHelper argsHelper);
+    List<FileLogModel> searchRequestByIp(ArgsHelper argsHelper);
+
+    void searchAndSaveIPsBlock(ArgsHelper argsHelper);
 }
